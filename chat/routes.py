@@ -38,14 +38,11 @@ manager = ConnectionManager()
 
 
 async def send_jokes_periodically(websocket: WebSocket):
-    """
-    Sends a random joke to the connected WebSocket client every 5 seconds asynchronsouly
-    """
     try:
         while True:
             joke = random.choice(JOKES)
             await manager.send_personal_message(f"Joke: {joke}", websocket)
-            await asyncio.sleep(0.2) # 200ms
+            await asyncio.sleep(0.2)  # 200ms
     except WebSocketDisconnect:
         pass
     except Exception as e:
