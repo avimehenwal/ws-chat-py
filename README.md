@@ -83,3 +83,6 @@ Source code is organized as per following modules which could be easily extended
 1. Jokes could come from data-source like a postgres database or external API
 2. Once data source is added, service-repository pattern could be used to organize code
 3. Use Environment variables for service URLs like database connection string, redis_url etc which depende on environment
+4. Add and improve application logging
+5. Cancel API requests after websocket connection has been closed
+6. Each external API could be added to codebase as Service using strategy pattern and gradually replace current logic

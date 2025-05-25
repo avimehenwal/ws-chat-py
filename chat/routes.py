@@ -4,13 +4,14 @@ from typing import List
 from fastapi import APIRouter
 from datetime import datetime
 from fastapi import WebSocket, WebSocketDisconnect
-from joke.data import JOKES # Assuming JOKES is accessible
+from joke.data import JOKES  # Assuming JOKES is accessible
 from chat.connection_manager import ConnectionManager
 
 chat_router = APIRouter(prefix="/chat", tags=["Chat API"])
 
 # TODO: Get URL from env var
 manager = ConnectionManager(redis_url="redis://localhost:6379")
+
 
 async def send_jokes_periodically(websocket: WebSocket):
     try:
@@ -25,13 +26,16 @@ async def send_jokes_periodically(websocket: WebSocket):
     except Exception as e:
         print(f"Error in joke sending task for client {websocket.client}: {e}")
 
+
 @chat_router.get("/")
 def get_chat_service_status():
     return {"Status": "Chat enabled", "time": datetime.now().isoformat()}
 
+
 @chat_router.get("/analytics")
 async def get_chat_metrics():
     return await manager.get_metrics()
+
 
 @chat_router.websocket("/ws")
 async def websocket_endpoint(websocket: WebSocket):
