@@ -12,9 +12,18 @@
 ```sh
 python3 -m venv .venv
 source .venv/bin/activate
+
+docker compose up -d
 ```
 
 ## Tech stack used
+
+### Dependencies
+
+| S.No | dependency                    | purpose                  |
+| ---- | ----------------------------- | ------------------------ |
+| 1.   | libretranslate/libretranslate | translations             |
+| 2.   | redis                         | analytics and data-store |
 
 ## Code Organization
 

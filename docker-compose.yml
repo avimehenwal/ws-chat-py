@@ -1,0 +1,19 @@
+services:
+  libretranslate:
+    image: libretranslate/libretranslate
+    container_name: libretranslate
+    ports:
+      - "8888:5000"
+    # command: ["--char-limit", "5000"]
+
+  redis:
+    image: redis:latest
+    container_name: redis
+    ports:
+      - "6379:6379"
+    depends_on:
+      - libretranslate
+    # volumes:
+    #   - redis_data:/data
+# volumes:
+#   redis_data:
